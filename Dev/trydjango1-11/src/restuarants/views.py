@@ -4,8 +4,17 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import TemplateView
 
+from .models import RestuarantLocation
 # Create your views here.
 #fun based view
+def restuarants_listview(request):
+	template_name = 'restuarants/restuarants_list.html'
+	queryset = RestuarantLocation.objects.all()
+	context = {
+		"object_list":queryset
+	}
+	return render(request,template_name,context)
+
 
 # def home_old(request):
 # 	html_var = 'f strings'
@@ -62,20 +71,20 @@ from django.views.generic import TemplateView
 # class ContactTemplateView(TemplateView):
 # 	template_name = 'contact.html'
 
-class HomeView(TemplateView):
-	template_name = 'home.html'
+# class HomeView(TemplateView):
+# 	template_name = 'home.html'
 
-	def get_context_data(self,*args,**kwargs):
-		context = super(HomeView,self).get_context_data(*args,**kwargs)
-		num = None
-		some_list = [random.randint(0,1000000),random.randint(0,1000000), random.randint(0,1000000) ]
-		cond_bool_itm = True
-		if cond_bool_itm:
-			num = random.randint(0,1000000)
-		context = {
-					"some_list": some_list,
-					"num" : num}
-		return(context)
+# 	def get_context_data(self,*args,**kwargs):
+# 		context = super(HomeView,self).get_context_data(*args,**kwargs)
+# 		num = None
+# 		some_list = [random.randint(0,1000000),random.randint(0,1000000), random.randint(0,1000000) ]
+# 		cond_bool_itm = True
+# 		if cond_bool_itm:
+# 			num = random.randint(0,1000000)
+# 		context = {
+# 					"some_list": some_list,
+# 					"num" : num}
+# 		return(context)
 
 # class AboutView(TemplateView):
 # 	template_name = 'about.html'
