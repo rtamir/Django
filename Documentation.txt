@@ -1,0 +1,64 @@
+
+>>>>>
+SETTING UP DJANGO for Windows.
+https://www.codingforentrepreneurs.com/blog/create-a-blank-django-project/
+
+1. cd D:\Others\Django\(working directory)
+2. mkdir Dev
+3. cd Dev
+4. mkdir myhome
+5. cd myhome
+6. virtualenv project1 .
+NOTE: If virtualenv is not installed, use "pip install virtualenv"
+7. .\Script\activate
+8. pip freeze
+9. pip install django==1.11.15
+10. mkdir src
+11. cd src
+12. python ..\Scripts\dkango-admin.py startproject muypicky .
+13. Open sublimetext->Project->Save Project as. Browse to D:\Others\Django\Dev\myhome and save muypicky
+14. Project->Add folder browse to myhome and select.
+15. Under src\muypicky\ create a settings dir and create __init.py , base.py, local.py and production.py
+16. copy setting.py under src into all the base, local, production .py files.
+17. Change the BASE_DIR to BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+18. Now install the remining depedencies.
+# for a postgresql database
+pip install psycopg2
+
+# for use on heroku
+pip install gunicorn dj-database-url
+
+pip install django-crispy-forms
+pip install pillow
+	   
+19. pip freeze > requirements.txt
+20. To start the web page.
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py runserver
+
+
+What Django does??
+1. Handles URLS
+2. Returns responses
+3. Remembers stuff.
+It does through apps, apps are self contained modules.
+
+accounts-- user "django apps"
+videos
+analystics
+menu listings
+
+$$python manage.py startapp restuarants
+
+In restuarants>views we write function based views. Now put this view into an URL
+
+
+>>Remembering things with models
+
+in models.py create Restaurant class.
+include in base.py, in installed apps add to the list 'restuarants'(the app name)
+then "python manage.py makemigration" to prepare django to know about model to DB
+"python manage.py migrate" will make django perform operations to migrate to DB
+in admin.py of restuarants app, register your model restuarants
+
